@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/background"
+    tools:context="com.talks.towtie.foodtracker.MainActivity">
+
+    <TextView
+        android:id="@+id/munchtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop = "20dp"
+        android:layout_below="@+id/loadButton"
+        android:gravity="right"
+        android:typeface="serif"
+        android:textSize="22dp" />
+
+    <Button
+        android:id="@+id/loadButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/loaddata"
+        android:layout_below="@+id/passwordField"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/campustxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop = "20dp"
+        android:layout_below="@+id/munchtxt"
+        android:gravity="right"
+        android:typeface="serif"
+        android:textSize="22dp"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:id="@+id/swipestxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_centerInParent="true"
+        android:layout_marginTop = "20dp"
+        android:layout_below="@+id/campustxt"
+        android:typeface="serif"
+        android:textSize="22dp" />
+
+    <TextView
+        android:id="@+id/testtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+
+    <EditText
+        android:id="@+id/identikeyField"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="#CFB87C"
+        android:autoText="false"
+        android:imeOptions="actionDone"
+        android:hint="CU Identikey (i.e. tako6739)" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/passwordField"
+        android:hint="Password"
+        android:layout_below="@+id/identikeyField"
+        android:imeOptions="actionDone"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:backgroundTint="#CFB87C"
+        android:singleLine="true"
+        android:selectAllOnFocus="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/passView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timeUntilView"
+        android:layout_below="@+id/swipestxt"
+        android:layout_centerHorizontal="true"
+        android:textIsSelectable="true"
+        android:layout_marginTop = "20dp"
+        android:textSize="22dp"
+        android:typeface="serif" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="v0.01"
+        android:id="@+id/textView"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

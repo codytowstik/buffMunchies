@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Buff Munchies</string>
+    <string name="action_settings">Settings</string>
+    <string name="mealSwipes">Meal Swipes:</string>
+    <string name="cleardata">Clear</string>
+    <string name="loaddata">Login</string>
+    <string name="printMoney">Print Quota:</string>
+</resources>
