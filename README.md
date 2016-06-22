@@ -1,0 +1,24 @@
+# Buff Munchies
+### About
+
+  This is an open source project meant to develop a comprehensive app for CU students, by CU students. Anyone can contribute 
+  and make pull requests to add/fix/change features. So far munch money tracking and general info has been implemented, but the
+  general methodology is used to log in to most CU portals including D2L, myCUInfo, etc. Feel free to run the current app and 
+  mess around with the code to get familiar. If you have any ideas for features or improvements, make a comment or implement
+  them yourself! You don't need to have any Java experience to contribute, all code will be reviewed before merging and it is
+  GREAT practice to just dive in.
+  
+### Rules
+
+* Make all variables/classes/functions verbose (I shouldn't have to scratch my head to figure out what something is for/does)
+* Leave a 1 line comment explaining parts of your implementations since many contributors may be novice programmers.
+* Ask Questions
+
+### Notes
+
+* Any UI/UX improvements and images for buttons/banners/etc. are HIGHLY appreciated
+
+### TO DO:
+
+* Main menu once more features are implemented
+* Comment/Pull edit requests to add desired features
