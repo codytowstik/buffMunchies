@@ -22,3 +22,10 @@
 
 * Main menu once more features are implemented
 * Comment/Pull edit requests to add desired features
+
+# Instructions:
+
+1. Download Android Studio and set up emulators (Google for a guide on how to do this, and try a 'Hello World' app)
+2. Choose 'Open...' or a similar option to open an existing project
+3. Navigate to the FoodTracker, it should have a green Android Studio icon next to it
+4. Voila... you should be able to click the green 'Run' arrow and the app should start up
