@@ -217,81 +217,74 @@ public class MainActivity extends AppCompatActivity {
 
                 //Find Campus Cash
 
-                Elements        campusCash = homePage.getElementsContainingOwnText("Current CC");
+                Elements        campusCash = homePage.getElementsContainingOwnText( "Current CC" );
 
                 campusPre = campusCash.text();
                 campusCashText = "Campus Cash: " + campusPre.substring(20);
 
                 //Find Munch Money
-                Elements munchMoney = homePage.getElementsContainingOwnText("Current MM");
-                //System.out.println(munchMoney.text() + "?");
+
+                Elements        munchMoney = homePage.getElementsContainingOwnText( "Current MM" );
+
                 munchPre = munchMoney.text();
-                if(munchPre != "") {
+                if( munchPre != "" )
+                {
                     munchMoneyText = "Munch Money: " + munchPre.substring(20);
-                }else{
+                }
+                else
+                {
                     munchMoneyText = "Munch Money: None";
                 }
 
                 //Find Meal Swipes
-                Elements mealSwipes = homePage.getElementsContainingOwnText("Current MP");
-                //System.out.println(mealSwipes.text() + "?");
+
+                Elements mealSwipes = homePage.getElementsContainingOwnText( "Current MP" );
                 swipesPre = mealSwipes.text();
-                //System.out.println(swipesPre.length());
-                if(swipesPre.length()==24){
-                    mealSwipesText = "Meal Swipes: " + swipesPre.substring(20,21);
-                }else if(swipesPre.length()==25){
-                    mealSwipesText = "Meal Swipes: " + swipesPre.substring(20,22);
+
+                if( swipesPre.length() == 24 )
+                {
+                    mealSwipesText = "Meal Swipes: " + swipesPre.substring( 20, 21 );
                 }
-                else{
+                else if( swipesPre.length() == 25 )
+                {
+                    mealSwipesText = "Meal Swipes: " + swipesPre.substring( 20, 22 );
+                }
+                else
+                {
                     munchMoneyText="None";
                 }
 
                 //How long until rollover
-                Calendar rightNow = Calendar.getInstance();
-                Calendar wednesday = Calendar.getInstance();
+
+                Calendar        rightNow = Calendar.getInstance();
+                Calendar        wednesday = Calendar.getInstance();
+
                 wednesday.set(Calendar.DAY_OF_WEEK,Calendar.WEDNESDAY);
                 wednesday.set(Calendar.HOUR_OF_DAY,0);
                 wednesday.set(Calendar.MINUTE,0);
                 wednesday.set(Calendar.SECOND, 0);
-                DateFormat df=new SimpleDateFormat("EEE yyyy/MM/dd HH:mm:ss");
-                //System.out.println(df.format(wednesday.getTime()));
-                long millis = (wednesday.getTimeInMillis() - rightNow.getTimeInMillis());
+
+                DateFormat      df = new SimpleDateFormat("EEE yyyy/MM/dd HH:mm:ss");
+
+                long        millis = (wednesday.getTimeInMillis() - rightNow.getTimeInMillis());
+
                 hms = String.format("Time Until Meal Swipe Reset: \n %02d day, %02d hours, %02d minutes", TimeUnit.MILLISECONDS.toDays(millis),
                         TimeUnit.MILLISECONDS.toHours(millis) - TimeUnit.DAYS.toHours(TimeUnit.MILLISECONDS.toDays(millis)),
                         TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
                         TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
-                //System.out.println(hms);
 
-
-
-
-                //Elements dooby = homePage.getElementsContainingText("Welcome to the Buff OneCard online account management web site!");
-                //munchy = homePage.text();
-
-                //System.out.println("Step 9");
-
-//
-//                System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-//                System.out.println("Form Data: ");
-//                System.out.println(dooby2 + "dooby2");
-//                System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-//                System.out.println(dooby3 + "dooby3");
-//                System.out.println("*****************************************************");
-//                System.out.println(dooby);
-//                System.out.println("########################################################");
-
-                //****
-//                System.out.println(secureURLGoTo3 + "url3");
-                //munchy = skeyFinal + response.url().getQuery();
-                //munchy = dooby.text();
-            } catch (IOException e) {
+            }
+            catch (IOException e)
+            {
                 e.printStackTrace();
             }
+
             return null;
         }
 
         @Override
-        protected void onPostExecute(Void result) {
+        protected void onPostExecute(Void result)
+        {
             // Set description into TextView
             TextView campusView = (TextView) findViewById(R.id.campustxt);
             campusView.setText(campusCashText);
@@ -305,31 +298,37 @@ public class MainActivity extends AppCompatActivity {
             TextView timeView = (TextView) findViewById(R.id.timeUntilView);
             timeView.setText(hms);
 
-            if(isEmpty == true){
+            if( isEmpty )
+            {
                 isEmpty = false;
-            }else if(infoCorrect == false){
+            }
+            else if( !infoCorrect )
+            {
                 infoCorrect = true;
                 mProgressDialog.dismiss();
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Login Fail")
                         .setMessage("Are you sure your information is correct?")
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface dialog, int which)
+                            {
                                 // continue with delete
                             }
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
-            }else{
+            }
+            else
+            {
                 mProgressDialog.dismiss();
 
             }
-
-
         }
     }
 
-    private class Campus extends AsyncTask<Void, Void, Void> {
+    private class Campus extends AsyncTask<Void, Void, Void>
+    {
         @Override
         protected void onPreExecute(){}
         @Override
@@ -337,7 +336,8 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
         @Override
-        protected void onPostExecute(Void result) {
+        protected void onPostExecute(Void result)
+        {
             // Set description into TextView
             TextView txtdesc1 = (TextView) findViewById(R.id.munchtxt);
             txtdesc1.setText("");
