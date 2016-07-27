@@ -1,13 +1,11 @@
 package com.talks.towtie.foodtracker;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -19,20 +17,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.text.InputType;
-import android.text.method.PasswordTransformationMethod;
-import android.util.EventLogTags;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import android.support.v7.app.AppCompatActivity;
@@ -43,73 +32,58 @@ import com.firebase.client.Firebase;
 public class MainActivity extends AppCompatActivity {
 
     // URL Address
-    String buffmanagerurl = "https://services.jsatech.com/index.php?cid=59";
-    ProgressDialog mProgressDialog;
-    Boolean showPass = false;
+    String               buffmanagerurl = "https://services.jsatech.com/index.php?cid=59";
+    ProgressDialog       mProgressDialog;
+    Boolean              showPass = false;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Firebase.setAndroidContext(this);
 
         // Locate Buttons in activity_main.xml
-        Button loadButton = (Button) findViewById(R.id.loadButton);
-        //Button campusButton = (Button) findViewById(R.id.clearButton);
 
-
-
-        //Button swipesbutton = (Button) findViewById(R.id.swipesbutton);
+        Button      loadButton = (Button) findViewById(R.id.loadButton);
 
         // Capture button click
-        loadButton.setOnClickListener(new OnClickListener() {
-            public void onClick(View arg0) {
+
+        loadButton.setOnClickListener(new OnClickListener()
+        {
+            public void onClick(View arg0)
+            {
                 // Execute munch money AsyncTask
+
                 new Munch().execute();
             }
         });
-
-//        campusButton.setOnClickListener(new OnClickListener() {
-//            public void onClick(View arg0) {
-//                // Execute munch money AsyncTask
-//                new Campus().execute();
-//            }
-//        });
-
-
     }
-/*
-    protected void getMunchies(){
-        try{
 
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-*/
+    private class Munch extends AsyncTask<Void, Void, Void>
+    {
+        String      munchMoneyText;
+        String      campusCashText;
+        String      mealSwipesText;
+        String      hms;
+        Boolean     isEmpty = false;
+        Boolean     infoCorrect = true;
 
+        EditText        identiField = (EditText) findViewById(R.id.identikeyField);
+        EditText        passField = (EditText) findViewById(R.id.passwordField);
 
-    private class Munch extends AsyncTask<Void, Void, Void> {
-        String munchMoneyText;
-        String campusCashText;
-        String mealSwipesText;
-        String hms;
-        Boolean isEmpty = false;
-        Boolean infoCorrect = true;
-
-        EditText identiField = (EditText) findViewById(R.id.identikeyField);
-        EditText passField = (EditText) findViewById(R.id.passwordField);
-
-
-        String identiKey = identiField.getText().toString();
-        String userPass = passField.getText().toString();
+        String      identiKey = identiField.getText().toString();
+        String      userPass = passField.getText().toString();
 
         @Override
-        protected void onPreExecute() {
+        protected void onPreExecute()
+        {
             super.onPreExecute();
 
-            if (identiKey.matches("")||userPass.matches("")) {
+            if ( identiKey.matches("") || userPass.matches("") )
+            {
                 isEmpty = true;
+
                 return;
             }
 
@@ -122,36 +96,34 @@ public class MainActivity extends AppCompatActivity {
 
 
         @Override
-        protected Void doInBackground(Void... params) {
-            if (isEmpty == true){
+        protected Void doInBackground(Void... params)
+        {
+            if ( isEmpty )
+            {
                 return null;
             }
 
-            try {
+            try
+            {
 
-                Document skeyParser = Jsoup.connect("https://services.jsatech.com/login.php?cid=59&")
+                Document skeyParser = Jsoup.connect( buffmanagerurl )
                         .followRedirects(true)
                         .userAgent("Chrome/49.0.2623.110")
                         .get();
-                Elements skeyCode = skeyParser.select("table[class=formbody] form[action]");
+
+                Elements        skeyCode = skeyParser.select("table[class=formbody] form[action]");
 
 
-                String preIteration = skeyCode.attr("action");
-                String skeyFinal = preIteration.substring(51);
+                String      preIteration = skeyCode.attr("action");
+                String      skeyFinal = preIteration.substring(51);
 
-                //String skeyFinal = "5aead4e7600fc887bb52e29dbcf1d2a8";
-                String secureURLLogin = "https://services.jsatech.com/login.php?cid=59&skey=" + skeyFinal;
-                String secureURLGoTo1 ="https://services.jsatech.com/login.php?cid=59&skey=" + skeyFinal;
-                String secureURLGoTo2 = "https://services.jsatech.com/login.php?skey=" + skeyFinal +"&cid=59&fullscreen=1&wason=";
-                String secureURLGoTo3 = "https://services.jsatech.com/index.php?skey=" + skeyFinal + "&cid=59&";
+                String      secureURLLogin = "https://services.jsatech.com/login.php?cid=59&skey=" + skeyFinal;
+                String      secureURLGoTo1 ="https://services.jsatech.com/login.php?cid=59&skey=" + skeyFinal;
+                String      secureURLGoTo2 = "https://services.jsatech.com/login.php?skey=" + skeyFinal +"&cid=59&fullscreen=1&wason=";
+                String      secureURLGoTo3 = "https://services.jsatech.com/index.php?skey=" + skeyFinal + "&cid=59&";
 
-                //System.out.println("Login Form Data: ");
-                //System.out.println(skeyCode);
-                //System.out.println(skeyFinal);
+                String      referURL= "Referer:https://services.jsatech.com/login.php?skey=" +skeyFinal + "&cid=59&fullscreen=1&wason=";
 
-                String referURL= "Referer:https://services.jsatech.com/login.php?skey=" +skeyFinal + "&cid=59&fullscreen=1&wason=";
-
-                //munchy = secureURL;
                 Connection.Response response = Jsoup
                         .connect(secureURLLogin)
                         .followRedirects(true)
@@ -159,18 +131,17 @@ public class MainActivity extends AppCompatActivity {
                         .method(Connection.Method.GET)
                         .execute();
 
-                //System.out.println(response.url().toString());
-
                 Map<String, String> cookies = response.cookies();
 
-                //munchy = skeyFinal + response.url().toString();
-                //System.out.println("Step .5");
-                try {
+                try
+                {
                     Thread.sleep(1000);
-                } catch (InterruptedException e) {
+                }
+                catch (InterruptedException e)
+                {
                     e.printStackTrace();
                 }
-                //System.out.println("Step 1");
+
                 response = Jsoup.connect(secureURLLogin)
                         .followRedirects(true)
                         .header("Accept","text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
@@ -192,35 +163,30 @@ public class MainActivity extends AppCompatActivity {
                         .method(Connection.Method.POST)
                         .execute();
 
-                //munchy = munchy + response.url().toString();
-               //System.out.println(response.url().toString());
-                //System.out.println("Step 2");
-                try {
-                    Thread.sleep(5500);
-                } catch (InterruptedException e) {
+                try
+                {
+                    Thread.sleep( 5500 );
+                }
+                catch ( InterruptedException e )
+                {
                     e.printStackTrace();
                 }
-                //System.out.println("Step 3");
-                /*
-                Document touch = Jsoup.connect(secureURLGoTo2)
-                        .followRedirects(true)
-                        .cookies(cookies)
-                        .get();
-                */
 
                 Connection.Response touch = Jsoup
-                        .connect(secureURLGoTo2)
+                        .connect( secureURLGoTo2 )
                         .followRedirects(true)
                         .userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36")
                         .method(Connection.Method.GET)
                         .execute();
-                //System.out.println("Step 4");
-                try {
-                    Thread.sleep(5500);
-                } catch (InterruptedException e) {
+
+                try
+                {
+                    Thread.sleep( 5500 );
+                }
+                catch ( InterruptedException e )
+                {
                     e.printStackTrace();
                 }
-                //System.out.println("Step 5");
 
                 Connection.Response touch2 = Jsoup
                         .connect(secureURLGoTo3)
@@ -229,43 +195,30 @@ public class MainActivity extends AppCompatActivity {
                         .userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36")
                         .execute();
 
-                //System.out.println("Step 6");
-                //System.out.println(touch.url().toString());
-                //System.out.println(touch2.url().toString());
-
                 Document homePage = Jsoup.connect(secureURLGoTo3)
                         .userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Safari/537.36")
                         .get();
 
-
-                //System.out.println("Step 7");
-                //Document document1 = Jsoup.connect("http://armorgames.com/settings/general");
                 //Elements dooby = homePage.getElementsByClass("tabletitlebarnum");
-                //Elements dooby = homePage.getElementsByClass("formbody");
-
-                //Elements dooby = homePage.getElementsByClass("tabletitlebarnum");
-                //*****
 
                 Elements dooby2 = homePage.getElementsContainingText("Print Quota");
                 Elements dooby3 = homePage.getElementsContainingText("Help us to better serve you");
                 Elements dooby = homePage.select("td[class=formtitle]");
 
-
-                //System.out.println(dooby2.text());
-                if(dooby2.text() == ""){
+                if(dooby2.text() == "")
+                {
                     infoCorrect = false;
                     return null;
                 }
-                //System.out.println("Step 8");
 
-                String munchPre;
-                String campusPre;
-                String swipesPre;
+                String      munchPre;
+                String      campusPre;
+                String      swipesPre;
 
-                //System.out.println("---Useful Info---");
                 //Find Campus Cash
-                Elements campusCash = homePage.getElementsContainingOwnText("Current CC");
-                //System.out.println(campusCash.text() + "?");
+
+                Elements        campusCash = homePage.getElementsContainingOwnText("Current CC");
+
                 campusPre = campusCash.text();
                 campusCashText = "Campus Cash: " + campusPre.substring(20);
 
