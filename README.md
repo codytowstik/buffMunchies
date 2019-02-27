@@ -8,11 +8,9 @@
   them yourself! You don't need to have any Java experience to contribute, all code will be reviewed before merging and it is
   GREAT practice to just dive in.
   
-### Rules
+### Coding Standards
 
-* Make all variables/classes/functions verbose (I shouldn't have to scratch my head to figure out what something is for/does)
-* Leave a 1 line comment explaining parts of your implementations since many contributors may be novice programmers.
-* Ask Questions
+  Please just comment code for posterity and so others can learn
 
 ### Notes
 
