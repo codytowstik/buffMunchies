@@ -1,27 +1,16 @@
 # Buff Munchies
 ### About
 
-  This is an open source project meant to develop a comprehensive app for CU students, by CU students. Anyone can contribute 
-  and make pull requests to add/fix/change features. So far munch money tracking and general info has been implemented, but the
-  general methodology is used to log in to most CU portals including D2L, myCUInfo, etc. Feel free to run the current app and 
-  mess around with the code to get familiar. If you have any ideas for features or improvements, make a comment or implement
-  them yourself! You don't need to have any Java experience to contribute, all code will be reviewed before merging and it is
-  GREAT practice to just dive in.
+  Application originally built during a Hack CU Hackathon in 2016. Students got 15-19 meal swipes a week, only 4 could be used per day. It wasn't uncommon to lose track of how many swipes you had, since most people didn't even know about the portal that
+  could be used to check, and the UI was awful. 
   
-### Coding Standards
+  This app requires a student account to work (and probably doesn't work many years later), but provided an interface to
+  simply check the amount of meal swipes left and to see how much "munch money" was left.
+  
+  I fondly remember this project as my first attempt to stay up programming for 36 hours straight, and is probably why I
+  can no longer drink Red Bull.
 
-  Please just comment code for posterity and so others can learn
-
-### Notes
-
-* Any UI/UX improvements and images for buttons/banners/etc. are HIGHLY appreciated
-
-### TO DO:
-
-* Main menu once more features are implemented
-* Comment/Pull edit requests to add desired features
-
-# Instructions:
+# Instructions (when it used to work):
 
 1. Download Android Studio and set up emulators (Google for a guide on how to do this, and try a 'Hello World' app)
 2. Choose 'Open...' or a similar option to open an existing project
