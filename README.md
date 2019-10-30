@@ -9,6 +9,10 @@
   
   I fondly remember this project as my first attempt to stay up programming for 36 hours straight, and is probably why I
   can no longer drink Red Bull.
+  
+# If ...
+
+you are interested in browsing the code, I suggest taking a look at the [single MainActivity.java](./FoodTracker/app/src/main/java/com/talks/towtie/foodtracker/MainActivity.java) that essentially implements the entire app.
 
 # Instructions (when it used to work):
 
